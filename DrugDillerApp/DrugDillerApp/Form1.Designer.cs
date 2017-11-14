@@ -56,7 +56,6 @@
             this.tb_CustomerName.Size = new System.Drawing.Size(145, 20);
             this.tb_CustomerName.TabIndex = 1;
             this.tb_CustomerName.Text = "Enter Customer Name";
-            this.tb_CustomerName.TextChanged += new System.EventHandler(this.tb_CustomerName_TextChanged);
             // 
             // rb_Cocain
             // 
