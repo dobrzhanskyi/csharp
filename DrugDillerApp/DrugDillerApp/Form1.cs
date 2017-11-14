@@ -17,9 +17,10 @@ namespace DrugDillerApp
             InitializeComponent();           
         }
 
-        List<Client> clients = new List<Client>();
+        Dictionary <Client,Guid> clients = new Dictionary<Client,Guid>();
 
         Client nark = new Client();
+        Client nark2 = new Client();
         Drug ganja = new Drug("Ganja", 10);
         Drug cocain = new Drug("Cocaine", 30);       
 
@@ -42,17 +43,7 @@ namespace DrugDillerApp
 
         private void btn_NewCustomer_Click(object sender, EventArgs e)
         {
-            /*   if (ClientDB.Contains(new Client() {ClientName= tb_CustomerName.Text }))
-               {
-                   MessageBox.Show("This Customer is already existing");
-               }
-               else
-               {
-
-
-               }
-               */
-            clients.Add(new Client() { clientName = tb_CustomerName.Text });
+            clients.Add(new Client() { clientName = tb_CustomerName.Text },new Client().guid);                 
         }
        
         public void btn_Sell_Click(object sender, EventArgs e)
@@ -76,10 +67,20 @@ namespace DrugDillerApp
                 MessageBox.Show("Choose your Drug");
             }
         }
-
+        
         private void tb_DrugQuantity_TextChanged(object sender, EventArgs e)
         {
             bool checkInput = Int32.TryParse(tb_DrugQuantity.Text, out int result);           
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            label3.Text = nark.guid.ToString();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            label4.Text = nark2.guid.ToString();
         }
     }
 }
