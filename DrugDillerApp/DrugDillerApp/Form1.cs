@@ -17,7 +17,7 @@ namespace DrugDillerApp
             InitializeComponent();           
         }
 
-        Dictionary <Client,Guid> clients = new Dictionary<Client,Guid>();
+        Dictionary <Guid,Client> clients = new Dictionary<Guid,Client>();
 
         Client nark = new Client();
         Client nark2 = new Client();
@@ -43,7 +43,11 @@ namespace DrugDillerApp
 
         private void btn_NewCustomer_Click(object sender, EventArgs e)
         {
-            clients.Add(new Client() { clientName = tb_CustomerName.Text },new Client().guid);                 
+            clients.Add(new Client().guid,new Client() { clientName = tb_CustomerName.Text });
+            for (int i = 0; i <clients.Count; i++)
+            {
+                lw_clients.Items.Add(clients.Values.ToString());
+            }
         }
        
         public void btn_Sell_Click(object sender, EventArgs e)
