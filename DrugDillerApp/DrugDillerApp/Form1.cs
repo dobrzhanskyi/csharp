@@ -12,12 +12,21 @@ namespace DrugDillerApp
 {
     public partial class MainForm : Form
     {
-        public MainForm()
+        public  MainForm()
         {
             InitializeComponent();           
         }
 
         Dictionary <Guid,Client> clients = new Dictionary<Guid,Client>();
+
+        //private  static string MyToString<TKey, TValue>
+        //(this IDictionary<TKey, TValue> dictionary)
+        //    {
+        //        var items = from kvp in dictionary
+        //                    select kvp.Key + "=" + kvp.Value;
+
+        //        return "{" + string.Join(",", items) + "}";
+        //    }
 
         Client nark = new Client();
         Client nark2 = new Client();
@@ -43,13 +52,11 @@ namespace DrugDillerApp
 
         private void btn_NewCustomer_Click(object sender, EventArgs e)
         {
-            clients.Add(new Client().guid,new Client() { clientName = tb_CustomerName.Text });
-            for (int i = 0; i <clients.Count; i++)
-            {
-                lw_clients.Items.Add(clients.Values.ToString());
-            }
+            var client = new Client(tb_CustomerName.Text);
+            clients.Add(client.guid,client);
+            lw_clients.Items.Add(client.guid.ToString(), client.ToString(), 0);
         }
-       
+          
         public void btn_Sell_Click(object sender, EventArgs e)
         {
             if (rb_Cocain.Checked )

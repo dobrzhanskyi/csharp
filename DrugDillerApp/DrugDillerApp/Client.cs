@@ -15,12 +15,23 @@ namespace DrugDillerApp
         int quantityOfCocain;
 
         public Guid guid = Guid.NewGuid();
-       
+
+
+         
+        public Client(string name = "") {
+            this.clientName = name;
+        }
+         
         public void BuyDrugs(int quantityOfCocain, int quantityOfGanja)
         {
             this.quantityOfCocain = quantityOfCocain;
             this.quantityOfGanja = quantityOfGanja;
         }
-        
+
+        public override string ToString()
+        {
+            return this.clientName;
+        }
+
     }
 }

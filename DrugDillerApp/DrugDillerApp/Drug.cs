@@ -15,5 +15,6 @@ namespace DrugDillerApp
         }
         string drugName;
         public int drugPrice;
+        
     }
 }
