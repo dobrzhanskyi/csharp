@@ -17,30 +17,23 @@ namespace DrugDillerApp
             InitializeComponent();           
         }
 
+        bool gan = false;
+        bool coc = false;
+
         Dictionary <Guid,Client> clients = new Dictionary<Guid,Client>();
-
-        //private  static string MyToString<TKey, TValue>
-        //(this IDictionary<TKey, TValue> dictionary)
-        //    {
-        //        var items = from kvp in dictionary
-        //                    select kvp.Key + "=" + kvp.Value;
-
-        //        return "{" + string.Join(",", items) + "}";
-        //    }
-
-        Client nark = new Client();
-        Client nark2 = new Client();
         Drug ganja = new Drug("Ganja", 10);
         Drug cocain = new Drug("Cocaine", 30);       
-
+        
         private void rb_Ganja_CheckedChanged(object sender, EventArgs e)
         {
+            gan = true;
             Int32.TryParse(tb_DrugQuantity.Text, out int GanjaQuantity);
             lbl_Price.Text = (GanjaQuantity * ganja.drugPrice).ToString();          
         }
-
+       
         public void rb_Cocain_CheckedChanged(object sender, EventArgs e)
         {
+            coc = true;
             Int32.TryParse(tb_DrugQuantity.Text, out int CocainQuantity);
             lbl_Price.Text = (CocainQuantity * cocain.drugPrice).ToString();
         }
@@ -49,25 +42,24 @@ namespace DrugDillerApp
         {
             tb_DrugQuantity.Text = "";
         }
-
-        private void btn_NewCustomer_Click(object sender, EventArgs e)
+        
+        public void btn_NewCustomer_Click(object sender, EventArgs e)
         {
-            var client = new Client(tb_CustomerName.Text);
-            clients.Add(client.guid,client);
+            Client client = new Client(tb_CustomerName.Text);
+            clients.Add(client.guid,client);                            
             lw_clients.Items.Add(client.guid.ToString(), client.ToString(), 0);
+            lw_clients.Tag = client.ToString();
         }
           
         public void btn_Sell_Click(object sender, EventArgs e)
-        {
+        {          
             if (rb_Cocain.Checked )
             {
-                Int32.TryParse((tb_DrugQuantity.Text), out int result);
-                nark.BuyDrugs(result, 0);                           
+                Int32.TryParse((tb_DrugQuantity.Text), out int result);                                         
             }                                   
             else if(rb_Ganja.Checked)
             {
-                Int32.TryParse((tb_DrugQuantity.Text), out int result);
-                nark.BuyDrugs(0, result);
+                Int32.TryParse((tb_DrugQuantity.Text), out int result);               
             }
             else if(tb_DrugQuantity.Text=="")
             {
@@ -77,6 +69,25 @@ namespace DrugDillerApp
             {
                 MessageBox.Show("Choose your Drug");
             }
+            
+            MessageBox.Show(lw_clients.Tag.ToString());
+
+
+            Client client = new Client();
+            if (rb_Cocain.Enabled)
+                client.quantityOfCocain += Int32.Parse(tb_DrugQuantity.Text.ToString());
+            else if (rb_Ganja.Enabled)
+                client.quantityOfGanja += Int32.Parse(tb_DrugQuantity.Text.ToString());
+
+            client.quantityOfMoney -= Int32.Parse(lbl_Price.Text.ToString());
+            if (client.quantityOfMoney <Int32.Parse(lbl_Price.Text.ToString()))
+            {
+                MessageBox.Show("You don't have money");
+            }
+            else
+            {
+                MessageBox.Show(client.quantityOfMoney.ToString());
+            }
         }
         
         private void tb_DrugQuantity_TextChanged(object sender, EventArgs e)
@@ -84,14 +95,33 @@ namespace DrugDillerApp
             bool checkInput = Int32.TryParse(tb_DrugQuantity.Text, out int result);           
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void Sell()
         {
-            label3.Text = nark.guid.ToString();
+            if (coc|gan)
+            {
+                btn_Sell.Enabled = true;
+            }   
+            else if (tb_DrugQuantity.Text != "")
+                btn_Sell.Enabled = true;
+            else
+                btn_Sell.Enabled = false;
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void lw_clients_SelectedIndexChanged(object sender, EventArgs e)
         {
-            label4.Text = nark2.guid.ToString();
+            Sell();           
+        }
+
+        private void btn_Sell_VisibleChanged(object sender, EventArgs e)
+        {
+            if (coc | gan)
+            {
+                btn_Sell.Enabled = true;
+            }
+            else if (tb_DrugQuantity.Text != "")
+                btn_Sell.Enabled = true;
+            else
+                btn_Sell.Enabled = false;
         }
     }
 }

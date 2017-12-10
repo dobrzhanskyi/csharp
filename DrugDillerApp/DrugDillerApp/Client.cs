@@ -11,8 +11,9 @@ namespace DrugDillerApp
     {
         public string clientName;
         bool isAlive;
-        int quantityOfGanja;
-        int quantityOfCocain;
+       public int quantityOfGanja=0;
+        public int quantityOfCocain=0;
+       public  int quantityOfMoney = 100;
 
         public Guid guid = Guid.NewGuid();
 

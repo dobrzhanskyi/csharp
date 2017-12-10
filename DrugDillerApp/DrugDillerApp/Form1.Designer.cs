@@ -37,10 +37,9 @@
             this.btn_Sell = new System.Windows.Forms.Button();
             this.lb_GanjPrice = new System.Windows.Forms.Label();
             this.lb_cocprice = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.lw_clients = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lblCustomerName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_NewCustomer
@@ -59,7 +58,6 @@
             this.tb_CustomerName.Name = "tb_CustomerName";
             this.tb_CustomerName.Size = new System.Drawing.Size(145, 20);
             this.tb_CustomerName.TabIndex = 1;
-            this.tb_CustomerName.Text = "Enter Customer Name";
             // 
             // rb_Cocain
             // 
@@ -87,7 +85,7 @@
             // 
             // tb_DrugQuantity
             // 
-            this.tb_DrugQuantity.Location = new System.Drawing.Point(397, 124);
+            this.tb_DrugQuantity.Location = new System.Drawing.Point(397, 221);
             this.tb_DrugQuantity.Name = "tb_DrugQuantity";
             this.tb_DrugQuantity.Size = new System.Drawing.Size(100, 20);
             this.tb_DrugQuantity.TabIndex = 4;
@@ -105,12 +103,14 @@
             // 
             // btn_Sell
             // 
+            this.btn_Sell.Enabled = false;
             this.btn_Sell.Location = new System.Drawing.Point(503, 124);
             this.btn_Sell.Name = "btn_Sell";
             this.btn_Sell.Size = new System.Drawing.Size(75, 43);
             this.btn_Sell.TabIndex = 6;
             this.btn_Sell.Text = "Sell";
             this.btn_Sell.UseVisualStyleBackColor = true;
+            this.btn_Sell.VisibleChanged += new System.EventHandler(this.btn_Sell_VisibleChanged);
             this.btn_Sell.Click += new System.EventHandler(this.btn_Sell_Click);
             // 
             // lb_GanjPrice
@@ -131,26 +131,6 @@
             this.lb_cocprice.TabIndex = 8;
             this.lb_cocprice.Text = "30$";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(100, 282);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "label3";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(103, 299);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "label4";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
             // lw_clients
             // 
             this.lw_clients.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -160,19 +140,28 @@
             this.lw_clients.Size = new System.Drawing.Size(138, 122);
             this.lw_clients.TabIndex = 11;
             this.lw_clients.UseCompatibleStateImageBehavior = false;
+            this.lw_clients.SelectedIndexChanged += new System.EventHandler(this.lw_clients_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "Name";
+            // 
+            // lblCustomerName
+            // 
+            this.lblCustomerName.AutoSize = true;
+            this.lblCustomerName.Location = new System.Drawing.Point(12, 35);
+            this.lblCustomerName.Name = "lblCustomerName";
+            this.lblCustomerName.Size = new System.Drawing.Size(110, 13);
+            this.lblCustomerName.TabIndex = 12;
+            this.lblCustomerName.Text = "Enter Customer Name";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(716, 416);
+            this.Controls.Add(this.lblCustomerName);
             this.Controls.Add(this.lw_clients);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.lb_cocprice);
             this.Controls.Add(this.lb_GanjPrice);
             this.Controls.Add(this.btn_Sell);
@@ -200,10 +189,9 @@
         private System.Windows.Forms.Button btn_Sell;
         private System.Windows.Forms.Label lb_GanjPrice;
         private System.Windows.Forms.Label lb_cocprice;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ListView lw_clients;
         private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.Label lblCustomerName;
     }
 }
 
