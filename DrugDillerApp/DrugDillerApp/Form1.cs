@@ -111,17 +111,6 @@ namespace DrugDillerApp
         {
             Sell();           
         }
-
-        private void btn_Sell_VisibleChanged(object sender, EventArgs e)
-        {
-            if (coc | gan)
-            {
-                btn_Sell.Enabled = true;
-            }
-            else if (tb_DrugQuantity.Text != "")
-                btn_Sell.Enabled = true;
-            else
-                btn_Sell.Enabled = false;
-        }
+        
     }
 }

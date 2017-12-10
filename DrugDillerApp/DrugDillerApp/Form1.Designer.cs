@@ -110,7 +110,7 @@
             this.btn_Sell.TabIndex = 6;
             this.btn_Sell.Text = "Sell";
             this.btn_Sell.UseVisualStyleBackColor = true;
-            this.btn_Sell.VisibleChanged += new System.EventHandler(this.btn_Sell_VisibleChanged);
+       
             this.btn_Sell.Click += new System.EventHandler(this.btn_Sell_Click);
             // 
             // lb_GanjPrice
