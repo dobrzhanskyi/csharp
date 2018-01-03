@@ -72,27 +72,38 @@ namespace DrugDillerApp
             
             MessageBox.Show(lw_clients.Tag.ToString());
 
-
-            Client client = new Client();
-            if (rb_Cocain.Enabled)
+            if(lw_clients.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Select client");
+                return;
+            }
+            
+            var client = clients[Guid.Parse(lw_clients.SelectedItems[0].Name)];
+            if (rb_Cocain.Checked)
                 client.quantityOfCocain += Int32.Parse(tb_DrugQuantity.Text.ToString());
-            else if (rb_Ganja.Enabled)
+            else if (rb_Ganja.Checked)
                 client.quantityOfGanja += Int32.Parse(tb_DrugQuantity.Text.ToString());
 
-            client.quantityOfMoney -= Int32.Parse(lbl_Price.Text.ToString());
-            if (client.quantityOfMoney <Int32.Parse(lbl_Price.Text.ToString()))
+            
+            if (client.quantityOfMoney < Int32.Parse(lbl_Price.Text.ToString()))
             {
                 MessageBox.Show("You don't have money");
             }
             else
             {
+                client.quantityOfMoney -= Int32.Parse(lbl_Price.Text.ToString());
                 MessageBox.Show(client.quantityOfMoney.ToString());
+                MessageBox.Show(client.quantityOfGanja.ToString());
             }
         }
         
         private void tb_DrugQuantity_TextChanged(object sender, EventArgs e)
         {
-            bool checkInput = Int32.TryParse(tb_DrugQuantity.Text, out int result);           
+            bool checkInput = Int32.TryParse(tb_DrugQuantity.Text, out int result);
+            if (rb_Cocain.Checked)
+                lbl_Price.Text = $"{result * cocain.drugPrice}";
+            if (rb_Ganja.Checked)
+                lbl_Price.Text = $"{result * ganja.drugPrice}";
         }
 
         private void Sell()
