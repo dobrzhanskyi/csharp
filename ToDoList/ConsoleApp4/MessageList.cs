@@ -16,11 +16,7 @@ namespace ConsoleApp4
 		public void AddMessage(string inputMessage)
 		{
 			if (!string.IsNullOrEmpty(inputMessage))
-				Messages.Add(new Message()
-				{
-					TextMessage = inputMessage,
-					Date = DateTime.Now
-				});
+				Messages.Add(new Message(DateTime.Now, inputMessage));
 		}
 	}
 }
