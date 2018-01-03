@@ -4,15 +4,16 @@ namespace ConsoleApp4
 {
 	public class Message
 	{
-		public Message(DateTime Date, string TextMessage)
-		{
-			this.Date = Date;
-			this.TextMessage = TextMessage;
-		}
 
-		readonly public DateTime Date;
+		readonly public DateTime Date=DateTime.Now;
 
 		public string TextMessage { get; set; }
+
+		public Message(string TextMessage)
+		{
+
+			this.TextMessage = TextMessage;
+		}
 
 		public override string ToString()
 		{
