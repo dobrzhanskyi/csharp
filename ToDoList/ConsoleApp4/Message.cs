@@ -4,14 +4,14 @@ namespace ConsoleApp4
 {
 	public class Message
 	{
-
 		readonly public DateTime Date=DateTime.Now;
+
+		public string Action { get; set; }
 
 		public string TextMessage { get; set; }
 
 		public Message(string TextMessage)
 		{
-
 			this.TextMessage = TextMessage;
 		}
 

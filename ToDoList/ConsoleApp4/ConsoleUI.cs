@@ -21,7 +21,7 @@ namespace ConsoleApp4
 		private void Display(List<Message> messages)
 		{
 			for (int i = 0; i < messages.Count; i++)
-				Console.WriteLine($"{i + 1}\t{messages[i].ToString()}");
+				Console.WriteLine($"{i + 1}\tAction @{messages[i].Action}\tMessage: {messages[i].ToString()}");
 		}
 
 		public void CheckingConsole()
@@ -35,6 +35,7 @@ namespace ConsoleApp4
 				inputMessage = Console.ReadLine();
 				switch (inputMessage)
 				{
+					
 					case "sort":
 						Display(messageList.Sort());
 						break;
