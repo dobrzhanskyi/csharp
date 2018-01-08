@@ -13,36 +13,31 @@ namespace ConsoleApp4
 			return Messages.OrderByDescending(m => m.Date).ToList();
 		}
 
-		string action;
-
-		public void Split(string inputmessage)
+		void createNewMessage(string message, string action = "")
 		{
-			string delimStr = "@ ";
-			char[] delimiter = delimStr.ToCharArray();
-			string word = inputmessage;
-			string[] split = null;
-			for (int i = 0; i < inputmessage.Length; i++)
-			{
-				split = word.Split(delimiter, 5);
-			}
-			action = split[1];
+			Messages.Add(new Message(message, action));
 		}
 
 		public void AddMessage(string inputMessage)
 		{
-
-			if (inputMessage.Contains<char>('@'))
+			if (inputMessage.First().Equals('@'))
 			{
-				Split(inputMessage);
-				Messages.Add(new Message(inputMessage)
+				int spaceIndex = inputMessage.IndexOf(' ');
+				if (spaceIndex < 0)
 				{
-					Action = action,
-					TextMessage = inputMessage.Substring(action.Length + 2)
+					createNewMessage("", inputMessage);
 				}
-				);
+				else
+				{
+					string action = inputMessage.Substring(0, spaceIndex);
+					string text = inputMessage.Substring(spaceIndex + 1);
+					createNewMessage(text, action);
+				}
 			}
 			else if (!string.IsNullOrEmpty(inputMessage))
-				Messages.Add(new Message(inputMessage));
+			{
+				createNewMessage(inputMessage);
+			}
 		}
 	}
 }

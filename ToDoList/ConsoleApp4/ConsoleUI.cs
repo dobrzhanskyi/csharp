@@ -21,7 +21,7 @@ namespace ConsoleApp4
 		private void Display(List<Message> messages)
 		{
 			for (int i = 0; i < messages.Count; i++)
-				Console.WriteLine($"{i + 1}\tAction @{messages[i].Action}\tMessage: {messages[i].ToString()}");
+				Console.WriteLine($"{i + 1}. {messages[i].ToString()}");
 		}
 
 		public void CheckingConsole()

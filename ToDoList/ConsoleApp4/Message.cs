@@ -1,23 +1,30 @@
 ﻿using System;
 
+// Save format: {Date}{Action}{Text}    
+//                      |без собаки
+// Каждое сообщение с новой строки.
+// *.ms расширение
+// StreamWriter почитать, using 
+
 namespace ConsoleApp4
 {
 	public class Message
 	{
-		readonly public DateTime Date=DateTime.Now;
+		readonly public DateTime Date = DateTime.Now;
 
 		public string Action { get; set; }
 
-		public string TextMessage { get; set; }
+		public string Text { get; set; }
 
-		public Message(string TextMessage)
+		public Message(string textMessage, string action = "")
 		{
-			this.TextMessage = TextMessage;
+			this.Action = action;
+			this.Text = textMessage;
 		}
 
 		public override string ToString()
 		{
-			return $"{Date}\t{TextMessage}";
+			return $"{Date}\tMessage: '{Text}'\tAction: '{Action}'";
 		}
 	}
 }
