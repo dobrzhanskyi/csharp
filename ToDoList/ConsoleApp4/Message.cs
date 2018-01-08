@@ -26,5 +26,17 @@ namespace ConsoleApp4
 		{
 			return $"{Date}\tMessage: '{Text}'\tAction: '{Action}'";
 		}
+
+		public string FileSavingFormat()
+		{
+			if (Action == String.Empty)
+			{
+				return $"{Date}\tAction: '{Action}'\tMessage: '{Text}'";
+			}
+			else
+			{
+				return $"{Date}\tAction: '{Action.Substring(1)}'\tMessage: '{Text}'";
+			}
+		}
 	}
 }

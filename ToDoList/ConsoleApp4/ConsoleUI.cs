@@ -44,6 +44,9 @@ namespace ConsoleApp4
 						break;
 					case "exit":
 						break;
+					case "save":
+						messageList.SaveToFile(messageList.Messages);
+						break;
 					default:
 						messageList.AddMessage(inputMessage);
 						break;

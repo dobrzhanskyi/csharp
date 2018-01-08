@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace ConsoleApp4
@@ -13,7 +13,18 @@ namespace ConsoleApp4
 			return Messages.OrderByDescending(m => m.Date).ToList();
 		}
 
-		void createNewMessage(string message, string action = "")
+		public void SaveToFile(List<Message> messages)
+		{
+			using (StreamWriter streamWriter = new StreamWriter(@"message.ms"))
+			{
+				for (int i = 0; i < Messages.Count; i++)
+				{
+					streamWriter.WriteLine(messages[i].FileSavingFormat());
+				}
+			}
+		}
+
+		private void createNewMessage(string message, string action = "")
 		{
 			Messages.Add(new Message(message, action));
 		}
