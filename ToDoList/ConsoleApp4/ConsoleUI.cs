@@ -47,6 +47,9 @@ namespace ConsoleApp4
 					case "save":
 						messageList.SaveToFile(messageList.Messages);
 						break;
+					case "load":
+						messageList.LoadFile("message.ms");
+						break;
 					default:
 						messageList.AddMessage(inputMessage);
 						break;

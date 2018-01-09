@@ -1,11 +1,5 @@
 ﻿using System;
 
-// Save format: {Date}{Action}{Text}    
-//                      |без собаки
-// Каждое сообщение с новой строки.
-// *.ms расширение
-// StreamWriter почитать, using 
-
 namespace ConsoleApp4
 {
 	public class Message
@@ -22,6 +16,11 @@ namespace ConsoleApp4
 			this.Text = textMessage;
 		}
 
+		public Message(string textMessage, DateTime date, string action = ""):this(textMessage,action)
+		{
+			this.Date = date;
+		}
+
 		public override string ToString()
 		{
 			return $"{Date}\tMessage: '{Text}'\tAction: '{Action}'";
@@ -31,11 +30,11 @@ namespace ConsoleApp4
 		{
 			if (Action == String.Empty)
 			{
-				return $"{Date}\tAction: '{Action}'\tMessage: '{Text}'";
+				return $"{Date}|{Action}|{Text}";
 			}
 			else
 			{
-				return $"{Date}\tAction: '{Action.Substring(1)}'\tMessage: '{Text}'";
+				return $"{Date}|{Action.Substring(1)}|{Text}";
 			}
 		}
 	}
