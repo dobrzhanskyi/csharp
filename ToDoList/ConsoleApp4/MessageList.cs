@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -15,11 +16,34 @@ namespace ConsoleApp4
 
 		public void SaveToFile(List<Message> messages)
 		{
-			using (StreamWriter streamWriter = new StreamWriter(@"message.ms"))
+			using (StreamWriter stream = new StreamWriter(@"message.ms"))
 			{
 				for (int i = 0; i < Messages.Count; i++)
 				{
-					streamWriter.WriteLine(messages[i].FileSavingFormat());
+					stream.WriteLine(messages[i].FileSavingFormat());
+				}
+			}
+		}
+
+		public void LoadFile(string path)
+		{
+
+			using (StreamReader stream = new StreamReader(path))
+			{
+				while (!stream.EndOfStream)
+				{
+					string StringToSplit = stream.ReadLine();
+					string[] split = StringToSplit.Split('|');
+					string action = split[1];
+					string message = split[2];
+					string date = split[0];
+					DateTime dateTime = DateTime.Parse(date);
+					if (!String.IsNullOrEmpty(action))
+					{
+						action = "@" + action;
+					}
+
+					Messages.Add(new Message(message, dateTime, action));
 				}
 			}
 		}
@@ -31,6 +55,11 @@ namespace ConsoleApp4
 
 		public void AddMessage(string inputMessage)
 		{
+			if (string.IsNullOrEmpty(inputMessage))
+			{
+				return;
+			}
+
 			if (inputMessage.First().Equals('@'))
 			{
 				int spaceIndex = inputMessage.IndexOf(' ');
@@ -45,7 +74,7 @@ namespace ConsoleApp4
 					createNewMessage(text, action);
 				}
 			}
-			else if (!string.IsNullOrEmpty(inputMessage))
+			else
 			{
 				createNewMessage(inputMessage);
 			}
