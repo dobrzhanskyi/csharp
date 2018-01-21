@@ -18,41 +18,58 @@ namespace SmallShop
 		private void ShowInstructions()
 		{
 			Console.WriteLine("Avaliable commands :");
-			Console.ReadLine();
+
 		}
+
 		public void CheckingConsole()
 		{
 			ShowInstructions();
-			var inputMessage = string.Empty;
-
-			while (inputMessage != "exit")
+			var inputCommand = string.Empty;
+			while (inputCommand != "exit")
 			{
-				inputMessage = Console.ReadLine();
-				string[] split = inputMessage.Split(':');
-				string action = split[0];
-				switch (action)
+				inputCommand = Console.ReadLine();
+				if (!inputCommand.Contains(":"))
 				{
+					Console.WriteLine("Bad input");
+					return;
+				}
 
+				string[] split = inputCommand.Split(':');
+				string command = split[0];
+				if (split.Length < 1)
+				{
+					Console.WriteLine("Bad Input");
+				}
+
+				string inputValues = split[1];
+				switch (command)
+				{
+					//TODO:Parse exception (command)
 					case "add":
-				// TODO:		operations.AddItem();
+						operations.AddNewItem(inputValues);
+						break;
+					case "remove":
+						operations.RemoveItem(inputValues);
 						break;
 					case "display":
-
+						operations.DisplayPriceList();
 						break;
-					case "exit":
+					case "take":
+						operations.TakeToStock(inputValues);
 						break;
-					case "save":
-
+					case "displays":
+						operations.DisplayStock();
 						break;
-					case "load":
-
+					case "sell":
+						operations.SellFromStock(inputValues);
+						break;
+					case "sort":
+						operations.DisplayGroupedStock();
 						break;
 					default:
-
 						break;
 				}
 			}
 		}
-
 	}
 }
