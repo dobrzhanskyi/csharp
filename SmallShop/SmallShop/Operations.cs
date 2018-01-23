@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmallShop
 {
@@ -11,8 +8,6 @@ namespace SmallShop
 	{
 		public List<Item> Item = new List<Item>();
 		public List<Stock> StockList = new List<Stock>();
-
-
 
 		public void AddNewItem(string itemValues)
 		{
@@ -34,7 +29,6 @@ namespace SmallShop
 			{
 				Console.WriteLine(items.ToString());
 			}
-
 		}
 
 		public void DisplayStock()
@@ -54,34 +48,28 @@ namespace SmallShop
 			}
 
 		}
-
 		private List<Stock> GroupStockItems(List<Stock> list)
 		{
 			List<Stock> groupedList = new List<Stock>();
 			int quantity = 0;
 			foreach (var item in list)
 			{
-
 				if (item.Item.Barcode == item.Item.Barcode)
 				{
 					quantity += item.Count;
 				}
 				groupedList.Add(new Stock(item.Item, quantity, item.Date));
 			}
-
 			return groupedList;
 		}
-
 		private Item GetItemFromBarcode(int barcode)
 		{
-
 			foreach (var items in Item)
 			{
 				if (items.Barcode == barcode)
 					return items;
 			}
 			return null;
-
 		}
 
 		public void TakeToStock(string stockValues)
@@ -94,9 +82,6 @@ namespace SmallShop
 			//{
 			StockList.Add(new Stock(GetItemFromBarcode(barcode), count, DateTime.Now));
 			//}
-
-
-
 		}
 		public void SellFromStock(string stockValues)
 		{
@@ -116,8 +101,6 @@ namespace SmallShop
 				}
 				return;
 			}
-
-
 		}
 		public void RemoveItem(string itemValues)
 		{
@@ -128,7 +111,6 @@ namespace SmallShop
 		{
 			Item.Add(new Item(barcode, name, price));
 		}
-
 		public void SaveToFile(List<Item> messages)
 		{
 			using (StreamWriter stream = new StreamWriter(@"pricelist.ms"))
