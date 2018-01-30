@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmallShop
 {
@@ -17,12 +13,12 @@ namespace SmallShop
 
 		private void ShowInstructions()
 		{
-			Console.WriteLine("Avaliable commands :");
-
+			Console.WriteLine("Type help for available commands :");
 		}
 
 		public void CheckingConsole()
 		{
+			operations.LoadFiles();
 			ShowInstructions();
 			var inputCommand = string.Empty;
 			while (inputCommand != "exit")
@@ -63,8 +59,8 @@ namespace SmallShop
 					case "sell":
 						operations.SellFromStock(inputValues);
 						break;
-					case "sort":
-						operations.DisplayGroupedStock();
+					case "close":
+						operations.Exit();
 						break;
 					default:
 						break;

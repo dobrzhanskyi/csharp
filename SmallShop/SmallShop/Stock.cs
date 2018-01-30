@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SmallShop
 {
 	class Stock
 	{
 		public int Count { get; set; }
-
 		public Item Item { get; set; }
 		readonly public DateTime Date = DateTime.Now;
 
@@ -19,10 +14,15 @@ namespace SmallShop
 			this.Count = count;
 			this.Date = date;
 		}
+
 		public override string ToString()
 		{
 			return $"{Item.Barcode} {Count} {Date}";
 		}
 
+		public string FileSavingFormat()
+		{
+			return $"{Item.Barcode}|{Count}|{Date}";
+		}
 	}
 }
