@@ -46,12 +46,8 @@ namespace SmallShop
 			saveStockToFile(StockList);
 			Environment.Exit(0);
 		}
-<<<<<<< HEAD
 
 		private List<Stock> groupStockItems(List<Stock> list)
-=======
-		private List<Stock> GroupStockItems(List<Stock> list)
->>>>>>> e30619efabdd51bd4ddcd33911cd09393b7e0294
 		{
 			List<Stock> groupedList = new List<Stock>();
 			int quantity = 0;
@@ -65,16 +61,10 @@ namespace SmallShop
 			}
 			return groupedList;
 		}
-<<<<<<< HEAD
 
 		private Item getItemFromBarcode(int barcode)
 		{
 			foreach (var items in ItemList)
-=======
-		private Item GetItemFromBarcode(int barcode)
-		{
-			foreach (var items in Item)
->>>>>>> e30619efabdd51bd4ddcd33911cd09393b7e0294
 			{
 				if (items.Barcode == barcode)
 				{
@@ -89,15 +79,7 @@ namespace SmallShop
 			string[] subStockValue = stockValues.Split(' ');
 			int barcode = Convert.ToInt32(subStockValue[0]);
 			int count = Convert.ToInt32(subStockValue[1]);
-<<<<<<< HEAD
 			StockList.Add(new Stock(getItemFromBarcode(barcode), count, DateTime.Now));
-=======
-			//int oneStockValue = 1;
-			//for (int i = 0; i < count; i++)
-			//{
-			StockList.Add(new Stock(GetItemFromBarcode(barcode), count, DateTime.Now));
-			//}
->>>>>>> e30619efabdd51bd4ddcd33911cd09393b7e0294
 		}
 
 		public void SellFromStock(string stockValues)
@@ -130,7 +112,6 @@ namespace SmallShop
 					}
 				}
 			}
-<<<<<<< HEAD
 		}
 
 		private bool checkItemCountByBarcode(int barcode, int count)
@@ -141,8 +122,6 @@ namespace SmallShop
 				sum += item.Count;
 			}
 			return count <= sum;
-=======
->>>>>>> e30619efabdd51bd4ddcd33911cd09393b7e0294
 		}
 
 		public void RemoveItem(string itemValues)
@@ -160,12 +139,8 @@ namespace SmallShop
 		{
 			ItemList.Add(new Item(barcode, name, price));
 		}
-<<<<<<< HEAD
 
 		private void savePriceListToFile(List<Item> pricelist)
-=======
-		public void SaveToFile(List<Item> messages)
->>>>>>> e30619efabdd51bd4ddcd33911cd09393b7e0294
 		{
 			using (StreamWriter stream = new StreamWriter(@"pricelist.ms"))
 			{

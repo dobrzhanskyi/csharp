@@ -1,10 +1,4 @@
-<<<<<<< HEAD
-﻿namespace SmallShop
-=======
-﻿using System;
-
 namespace SmallShop
->>>>>>> e30619efabdd51bd4ddcd33911cd09393b7e0294
 {
 	class Item
 	{
