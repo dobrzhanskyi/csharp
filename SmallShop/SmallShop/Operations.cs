@@ -170,32 +170,47 @@ namespace SmallShop
 
 		private void loadPriceList(string path)
 		{
-			using (StreamReader stream = new StreamReader(path))
+			try
 			{
-				while (!stream.EndOfStream)
+				using (StreamReader stream = new StreamReader(path))
 				{
-					string StringToSplit = stream.ReadLine();
-					string[] split = StringToSplit.Split('|');
-					int barcode = Convert.ToInt32(split[0]);
-					string name = split[1];
-					double price = Convert.ToDouble(split[2]);
-					ItemList.Add(new Item(barcode, name, price));
+
+					while (!stream.EndOfStream)
+					{
+						string StringToSplit = stream.ReadLine();
+						string[] split = StringToSplit.Split('|');
+						int barcode = Convert.ToInt32(split[0]);
+						string name = split[1];
+						double price = Convert.ToDouble(split[2]);
+						ItemList.Add(new Item(barcode, name, price));
+					}
 				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"File {path} doesn't exist!");
 			}
 		}
 		private void loadStockList(string path)
 		{
-			using (StreamReader stream = new StreamReader(path))
+			try
 			{
-				while (!stream.EndOfStream)
+				using (StreamReader stream = new StreamReader(path))
 				{
-					string StringToSplit = stream.ReadLine();
-					string[] split = StringToSplit.Split('|');
-					int barcode = Convert.ToInt32(split[0]);
-					int count = Convert.ToInt32(split[1]);
-					DateTime date = Convert.ToDateTime(split[2]);
-					StockList.Add(new Stock(getItemFromBarcode(barcode), count, date));
+					while (!stream.EndOfStream)
+					{
+						string StringToSplit = stream.ReadLine();
+						string[] split = StringToSplit.Split('|');
+						int barcode = Convert.ToInt32(split[0]);
+						int count = Convert.ToInt32(split[1]);
+						DateTime date = Convert.ToDateTime(split[2]);
+						StockList.Add(new Stock(getItemFromBarcode(barcode), count, date));
+					}
 				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"File {path} doesn't exist!");
 			}
 		}
 	}
