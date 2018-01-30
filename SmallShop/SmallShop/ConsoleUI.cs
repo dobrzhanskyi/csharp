@@ -5,17 +5,14 @@ namespace SmallShop
 	class ConsoleUI
 	{
 		private Operations operations;
-
 		public ConsoleUI(Operations operations)
 		{
 			this.operations = operations;
 		}
-
 		private void ShowInstructions()
 		{
 			Console.WriteLine("Type help for available commands :");
 		}
-
 		public void CheckingConsole()
 		{
 			operations.LoadFiles();
