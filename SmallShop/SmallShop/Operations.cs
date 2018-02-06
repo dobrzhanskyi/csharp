@@ -42,8 +42,7 @@ namespace SmallShop
 			catch
 			{
 				ShowError();
-				
-			}		
+			}
 		}
 
 		public void DisplayPriceList()
@@ -116,7 +115,7 @@ namespace SmallShop
 			catch
 			{
 				ShowError();
-			}			
+			}
 		}
 
 		public void SellFromStock(string stockValues)
@@ -153,7 +152,7 @@ namespace SmallShop
 			catch
 			{
 				ShowError();
-			}			
+			}
 		}
 
 		private bool checkItemCountByBarcode(int barcode, int count)
