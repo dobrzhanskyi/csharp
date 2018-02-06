@@ -11,33 +11,32 @@ namespace SmallShop
 		}
 		private void ShowInstructions()
 		{
-			Console.WriteLine("Type help for available commands :");
+			Console.WriteLine(@"Type ""help:"" for available commands :");
 		}
 		public void CheckingConsole()
 		{
-			operations.LoadFiles();
 			ShowInstructions();
+			operations.LoadFiles();
 			var inputCommand = string.Empty;
 			while (inputCommand != "exit")
 			{
 				inputCommand = Console.ReadLine();
 				if (!inputCommand.Contains(":"))
 				{
-					Console.WriteLine("Bad input");
-					return;
+					operations.ShowError();
+					CheckingConsole();
 				}
 
 				string[] split = inputCommand.Split(':');
 				string command = split[0];
 				if (split.Length < 1)
 				{
-					Console.WriteLine("Bad Input");
+					operations.ShowError();
 				}
 
 				string inputValues = split[1];
 				switch (command)
 				{
-					//TODO:Parse exception (command)
 					case "add":
 						operations.AddNewItem(inputValues);
 						break;
@@ -58,6 +57,12 @@ namespace SmallShop
 						break;
 					case "close":
 						operations.Exit();
+						break;
+					case "help":
+						operations.ShowHelp();
+						break;
+					case "exit":
+						Environment.Exit(0);
 						break;
 					default:
 						break;
