@@ -4,8 +4,8 @@ namespace SmallShop
 {
 	class Stock
 	{
-		public int Count { get; set; }
-		public Item Item { get; set; }
+		public int Count;
+		public Item Item;
 		readonly public DateTime Date = DateTime.Now;
 
 		public Stock(Item item, int count, DateTime date)

@@ -18,9 +18,13 @@ namespace SmallShop
 			ShowInstructions();
 			operations.LoadFiles();
 			var inputCommand = string.Empty;
-			while (inputCommand != "exit")
+			while (true)
 			{
 				inputCommand = Console.ReadLine();
+				if (inputCommand=="exit")
+				{
+					break;
+				}
 				if (!inputCommand.Contains(":"))
 				{
 					operations.ShowError();

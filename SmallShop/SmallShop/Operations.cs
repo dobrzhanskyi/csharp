@@ -22,7 +22,7 @@ namespace SmallShop
 			Console.WriteLine("display: Show pricelist");
 			Console.WriteLine("displays: Show stock");
 			Console.WriteLine("close: Exit and save");
-			Console.WriteLine("exit: Exit without saving");
+			Console.WriteLine("exit Exit without saving");
 		}
 		public void AddNewItem(string itemValues)
 		{

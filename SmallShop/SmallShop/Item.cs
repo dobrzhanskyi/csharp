@@ -2,9 +2,9 @@ namespace SmallShop
 {
 	class Item
 	{
-		public string Name { get; set; }
-		public int Barcode { get; set; }
-		public double Price { get; set; }
+		public string Name;
+		public int Barcode;
+		public double Price;
 
 		public Item(int barcode)
 		{
