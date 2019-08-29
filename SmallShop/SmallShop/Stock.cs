@@ -2,7 +2,7 @@
 
 namespace SmallShop
 {
-	class Stock
+	internal class Stock
 	{
 		public int Count;
 		public Item Item;
@@ -10,9 +10,9 @@ namespace SmallShop
 
 		public Stock(Item item, int count, DateTime date)
 		{
-			this.Item = item;
-			this.Count = count;
-			this.Date = date;
+			Item = item;
+			Count = count;
+			Date = date;
 		}
 
 		public override string ToString()

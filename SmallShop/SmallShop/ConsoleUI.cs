@@ -2,72 +2,85 @@
 
 namespace SmallShop
 {
-	class ConsoleUI
+	internal class ConsoleUI
 	{
-		private Operations operations;
+		private readonly Operations _operations;
+
 		public ConsoleUI(Operations operations)
 		{
-			this.operations = operations;
+			this._operations = operations;
 		}
+
 		private void ShowInstructions()
 		{
 			Console.WriteLine(@"Type ""help:"" for available commands :");
 		}
+
 		public void CheckingConsole()
 		{
 			ShowInstructions();
-			operations.LoadFiles();
+			_operations.LoadFiles();
 			var inputCommand = string.Empty;
 			while (true)
 			{
 				inputCommand = Console.ReadLine();
-				if (inputCommand=="exit")
+				if (inputCommand == "exit")
 				{
 					break;
 				}
 				if (!inputCommand.Contains(":"))
 				{
-					operations.ShowError();
+					_operations.ShowError();
 					CheckingConsole();
 				}
 
 				string[] split = inputCommand.Split(':');
 				string command = split[0];
+
 				if (split.Length < 1)
 				{
-					operations.ShowError();
+					_operations.ShowError();
 				}
 
 				string inputValues = split[1];
 				switch (command)
 				{
 					case "add":
-						operations.AddNewItem(inputValues);
+						_operations.AddNewItem(inputValues);
 						break;
+
 					case "remove":
-						operations.RemoveItem(inputValues);
+						_operations.RemoveItem(inputValues);
 						break;
+
 					case "display":
-						operations.DisplayPriceList();
+						_operations.DisplayPriceList();
 						break;
+
 					case "take":
-						operations.TakeToStock(inputValues);
+						_operations.TakeToStock(inputValues);
 						break;
+
 					case "displays":
-						operations.DisplayStock();
+						_operations.DisplayStock();
 						break;
+
 					case "sell":
-						operations.SellFromStock(inputValues);
+						_operations.SellFromStock(inputValues);
 						break;
+
 					case "close":
-						operations.Exit();
+						_operations.Exit();
 						break;
+
 					case "help":
-						operations.ShowHelp();
+						_operations.ShowHelp();
 						break;
+
 					case "exit":
 						Environment.Exit(0);
 						break;
+
 					default:
 						break;
 				}

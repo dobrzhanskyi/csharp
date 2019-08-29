@@ -4,14 +4,16 @@ using System.IO;
 
 namespace SmallShop
 {
-	class Operations
+	internal class Operations
 	{
 		public List<Item> ItemList = new List<Item>();
 		public List<Stock> StockList = new List<Stock>();
+
 		public void ShowError()
 		{
 			Console.WriteLine("Bad Input");
 		}
+
 		public void ShowHelp()
 		{
 			Console.WriteLine("Availiable commands:");
@@ -24,6 +26,7 @@ namespace SmallShop
 			Console.WriteLine("close: Exit and save");
 			Console.WriteLine("exit Exit without saving");
 		}
+
 		public void AddNewItem(string itemValues)
 		{
 			if (string.IsNullOrEmpty(itemValues))
@@ -97,7 +100,6 @@ namespace SmallShop
 
 		public void TakeToStock(string stockValues)
 		{
-
 			try
 			{
 				string[] subStockValue = stockValues.Split(' ');
@@ -222,7 +224,6 @@ namespace SmallShop
 			{
 				using (StreamReader stream = new StreamReader(path))
 				{
-
 					while (!stream.EndOfStream)
 					{
 						string StringToSplit = stream.ReadLine();
@@ -239,6 +240,7 @@ namespace SmallShop
 				Console.WriteLine($"File {path} doesn't exist!");
 			}
 		}
+
 		private void loadStockList(string path)
 		{
 			try
