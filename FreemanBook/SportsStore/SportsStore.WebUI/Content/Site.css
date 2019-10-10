@@ -102,3 +102,6 @@ DIV#categories A {
     color: Black;
     border-bottom: 1px solid silver;
 }
+DIV#categories A.selected { background-color: #666; color: White; }
+DIV#categories A:hover { background-color: #CCC; }
+DIV#categories A.selected:hover { background-color: #666;
