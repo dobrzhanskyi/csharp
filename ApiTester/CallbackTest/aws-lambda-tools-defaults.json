@@ -13,6 +13,6 @@
     "s3-prefix"     : "CallbackTest/",
     "template"      : "serverless.template",
     "template-parameters" : "\"ShouldCreateBucket\"=\"true\";\"BucketName\"=\"\"",
-    "s3-bucket"           : "callbackbucketvova",
+    "s3-bucket"           : "newcallbackvova",
     "stack-name"          : "CallbackTesterLambdaWebAPI"
 }
